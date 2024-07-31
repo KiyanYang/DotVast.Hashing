@@ -1,0 +1,37 @@
+<Project>
+
+    <PropertyGroup>
+        <NativeLibName>native_crypto</NativeLibName>
+        <NativeLibTarget>x86_64-pc-windows-msvc</NativeLibTarget>
+        <NativeLibTarget Condition="'$(Platform)' == 'arm64'">aarch64-pc-windows-msvc</NativeLibTarget>
+
+        <NativeLibBuildCommand>cargo build --no-default-features --features "$(NativeLibEnabledHasher)"</NativeLibBuildCommand>
+        <NativeLibBuildCommand Condition="'$(Configuration)' != 'Debug'">$(NativeLibBuildCommand) --release</NativeLibBuildCommand>
+    </PropertyGroup>
+
+    <Target Name="temp123" BeforeTargets="BeforeBuild">
+        <Message Text="NativeLibBuildCommand = $(NativeLibBuildCommand)" Importance="high" />
+        <Message Text="NativeLibEnabledHasher = $(NativeLibEnabledHasher)" Importance="high" />
+        <Message Text="NativeLibPack = $(NativeLibPack)" Importance="high" />
+    </Target>
+
+    <Target Condition="'$(NativeLibPack)' != 'true'" Name="BuildNative" BeforeTargets="BeforeBuild">
+        <Exec Command="rustup target add $(NativeLibTarget)" />
+        <Exec Command="$(NativeLibBuildCommand) --target $(NativeLibTarget)" WorkingDirectory=".\$(NativeLibName)" />
+    </Target>
+
+    <ItemGroup Condition="'$(NativeLibPack)' != 'true'">
+        <None Include=".\$(NativeLibName)\target\$(NativeLibTarget)\$(Configuration)\$(NativeLibName).dll" Link="$(NativeLibName).dll" CopyToOutputDirectory="Always" Visible="false" />
+    </ItemGroup>
+
+    <Target Condition="'$(NativeLibPack)' == 'true'" Name="BuildNativeForPack" BeforeTargets="BeforeBuild">
+        <Exec Command="rustup target add x86_64-pc-windows-msvc aarch64-pc-windows-msvc" />
+        <Exec Command="$(NativeLibBuildCommand) --target x86_64-pc-windows-msvc --target aarch64-pc-windows-msvc" WorkingDirectory=".\$(NativeLibName)" />
+    </Target>
+
+    <ItemGroup Condition="'$(NativeLibPack)' == 'true'">
+        <None Include=".\$(NativeLibName)\target\x86_64-pc-windows-msvc\$(Configuration)\$(NativeLibName).dll" Pack="true" PackagePath="runtimes/win-x64/native" />
+        <None Include=".\$(NativeLibName)\target\aarch64-pc-windows-msvc\$(Configuration)\$(NativeLibName).dll" Pack="true" PackagePath="runtimes/win-arm64/native" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageId>DotVast.Hashing</PackageId>
+        <Version>0.1.0</Version>
+        <Title>DotVast.Hashing</Title>
+        <Authors>DotVast</Authors>
+        <Description>DotVast.Hashing</Description>
+        <Copyright>Copyright © Kiyan Yang, All Rights Reserved.</Copyright>
+        <PackageProjectUrl>https://github.com/KiyanYang/DotVast.Hashing</PackageProjectUrl>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <NativeLibEnabledHasher>all</NativeLibEnabledHasher>
+        <DefineConstants>$(DefineConstants);$(NativeLibEnabledHasher)</DefineConstants>
+    </PropertyGroup>
+
+    <Import Project="./native_crypto/Directory.Build.targets" />
+
+</Project>
