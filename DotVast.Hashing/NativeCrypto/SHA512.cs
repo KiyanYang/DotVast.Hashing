@@ -22,7 +22,11 @@ public sealed partial class SHA512 : IHasher
 
     public void Reset() => sha512_reset(_handle);
 
-    public void Append(ReadOnlySpan<byte> source) => sha512_update(_handle, source, source.Length);
+    public void Append(ReadOnlySpan<byte> source)
+    {
+        if (!source.IsEmpty)
+            sha512_update(_handle, source, source.Length);
+    }
 
     public byte[] Finalize()
     {

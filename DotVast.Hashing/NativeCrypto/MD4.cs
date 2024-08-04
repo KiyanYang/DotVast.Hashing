@@ -22,7 +22,11 @@ public sealed partial class MD4 : IHasher
 
     public void Reset() => md4_reset(_handle);
 
-    public void Append(ReadOnlySpan<byte> source) => md4_update(_handle, source, source.Length);
+    public void Append(ReadOnlySpan<byte> source)
+    {
+        if (!source.IsEmpty)
+            md4_update(_handle, source, source.Length);
+    }
 
     public byte[] Finalize()
     {

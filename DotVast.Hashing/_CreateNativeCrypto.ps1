@@ -71,7 +71,11 @@ public sealed partial class $className : IHasher
 
     public void Reset() => $fnReset(_handle);
 
-    public void Append(ReadOnlySpan<byte> source) => $fnUpdate(_handle, source, source.Length);
+    public void Append(ReadOnlySpan<byte> source)
+    {
+        if (!source.IsEmpty)
+            $fnUpdate(_handle, source, source.Length);
+    }
 
     public byte[] Finalize()
     {

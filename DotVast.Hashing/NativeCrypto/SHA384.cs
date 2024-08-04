@@ -22,7 +22,11 @@ public sealed partial class SHA384 : IHasher
 
     public void Reset() => sha384_reset(_handle);
 
-    public void Append(ReadOnlySpan<byte> source) => sha384_update(_handle, source, source.Length);
+    public void Append(ReadOnlySpan<byte> source)
+    {
+        if (!source.IsEmpty)
+            sha384_update(_handle, source, source.Length);
+    }
 
     public byte[] Finalize()
     {

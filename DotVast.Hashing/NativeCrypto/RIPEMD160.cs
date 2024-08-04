@@ -22,7 +22,11 @@ public sealed partial class RIPEMD160 : IHasher
 
     public void Reset() => ripemd160_reset(_handle);
 
-    public void Append(ReadOnlySpan<byte> source) => ripemd160_update(_handle, source, source.Length);
+    public void Append(ReadOnlySpan<byte> source)
+    {
+        if (!source.IsEmpty)
+            ripemd160_update(_handle, source, source.Length);
+    }
 
     public byte[] Finalize()
     {

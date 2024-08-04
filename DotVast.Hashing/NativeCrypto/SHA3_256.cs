@@ -22,7 +22,11 @@ public sealed partial class SHA3_256 : IHasher
 
     public void Reset() => sha3_256_reset(_handle);
 
-    public void Append(ReadOnlySpan<byte> source) => sha3_256_update(_handle, source, source.Length);
+    public void Append(ReadOnlySpan<byte> source)
+    {
+        if (!source.IsEmpty)
+            sha3_256_update(_handle, source, source.Length);
+    }
 
     public byte[] Finalize()
     {

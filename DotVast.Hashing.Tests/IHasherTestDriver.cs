@@ -63,7 +63,11 @@ public abstract class IHasherTestDriver(IHasherTestDriver.TestCase emptyInputTes
         output = hasher.FinalizeAndReset();
         VerifyEmptyResult(output);
 
-        output = hasher.Finalize();
+        output = hasher.FinalizeAndReset();
+        VerifyEmptyResult(output);
+
+        hasher.Append([]);
+        output = hasher.FinalizeAndReset();
         VerifyEmptyResult(output);
     }
 

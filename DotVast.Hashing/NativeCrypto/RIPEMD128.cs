@@ -22,7 +22,11 @@ public sealed partial class RIPEMD128 : IHasher
 
     public void Reset() => ripemd128_reset(_handle);
 
-    public void Append(ReadOnlySpan<byte> source) => ripemd128_update(_handle, source, source.Length);
+    public void Append(ReadOnlySpan<byte> source)
+    {
+        if (!source.IsEmpty)
+            ripemd128_update(_handle, source, source.Length);
+    }
 
     public byte[] Finalize()
     {

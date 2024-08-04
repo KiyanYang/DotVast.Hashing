@@ -22,7 +22,11 @@ public sealed partial class MD5 : IHasher
 
     public void Reset() => md5_reset(_handle);
 
-    public void Append(ReadOnlySpan<byte> source) => md5_update(_handle, source, source.Length);
+    public void Append(ReadOnlySpan<byte> source)
+    {
+        if (!source.IsEmpty)
+            md5_update(_handle, source, source.Length);
+    }
 
     public byte[] Finalize()
     {

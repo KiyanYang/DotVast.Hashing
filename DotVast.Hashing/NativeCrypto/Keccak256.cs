@@ -22,7 +22,11 @@ public sealed partial class Keccak256 : IHasher
 
     public void Reset() => Keccak256_reset(_handle);
 
-    public void Append(ReadOnlySpan<byte> source) => Keccak256_update(_handle, source, source.Length);
+    public void Append(ReadOnlySpan<byte> source)
+    {
+        if (!source.IsEmpty)
+            Keccak256_update(_handle, source, source.Length);
+    }
 
     public byte[] Finalize()
     {

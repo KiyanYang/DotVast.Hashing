@@ -22,7 +22,11 @@ public sealed partial class BLAKE2b384 : IHasher
 
     public void Reset() => blake2b384_reset(_handle);
 
-    public void Append(ReadOnlySpan<byte> source) => blake2b384_update(_handle, source, source.Length);
+    public void Append(ReadOnlySpan<byte> source)
+    {
+        if (!source.IsEmpty)
+            blake2b384_update(_handle, source, source.Length);
+    }
 
     public byte[] Finalize()
     {

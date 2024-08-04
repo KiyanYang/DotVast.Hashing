@@ -22,7 +22,11 @@ public sealed partial class BLAKE3 : IHasher
 
     public void Reset() => blake3_reset(_handle);
 
-    public void Append(ReadOnlySpan<byte> source) => blake3_update(_handle, source, source.Length);
+    public void Append(ReadOnlySpan<byte> source)
+    {
+        if (!source.IsEmpty)
+            blake3_update(_handle, source, source.Length);
+    }
 
     public byte[] Finalize()
     {

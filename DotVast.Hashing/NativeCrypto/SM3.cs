@@ -22,7 +22,11 @@ public sealed partial class SM3 : IHasher
 
     public void Reset() => sm3_reset(_handle);
 
-    public void Append(ReadOnlySpan<byte> source) => sm3_update(_handle, source, source.Length);
+    public void Append(ReadOnlySpan<byte> source)
+    {
+        if (!source.IsEmpty)
+            sm3_update(_handle, source, source.Length);
+    }
 
     public byte[] Finalize()
     {
