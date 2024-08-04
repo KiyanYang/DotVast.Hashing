@@ -1,4 +1,5 @@
-# dotnet pack -p:NativeLibPack=true
+Push-Location -Path $PSScriptRoot
+
 $DllName = 'native_crypto'
 $HasherInfoList = @(
     # ClassName, Feature, FnPrefix, HashLengthInBytes
@@ -105,3 +106,5 @@ public sealed partial class $className : IHasher
 
     $generated | Out-File -FilePath "./NativeCrypto/$className.cs"
 }
+
+Pop-Location
