@@ -54,7 +54,7 @@ public sealed class QuickXor : IHasher
             var remainning = BlockLength - blockIndex;
             var readLength = Math.Min(remainning, source.Length);
             Xor(_block.AsSpan(blockIndex, readLength), source);
-            source = source.Slice(readLength);
+            source = source[readLength..];
             _lengthSoFar += readLength;
         }
 
@@ -65,14 +65,14 @@ public sealed class QuickXor : IHasher
             var destinationVector = MemoryMarshal.Cast<byte, Vector<byte>>(destination);
             var sourceVector = MemoryMarshal.Cast<byte, Vector<byte>>(source);
 
-            for (var i = 0; i < destinationVector.Length; i++)
+            for (var i = 0; i != destinationVector.Length; i++)
             {
                 destinationVector[i] ^= sourceVector[i];
             }
 
-            for (var index = destinationVector.Length * Vector<byte>.Count; index != destination.Length; index++)
+            for (var i = destinationVector.Length * Vector<byte>.Count; i != destination.Length; i++)
             {
-                destination[index] ^= source[index];
+                destination[i] ^= source[i];
             }
         }
     }

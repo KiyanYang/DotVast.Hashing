@@ -5,7 +5,9 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotVast.Hashing", "DotVast.Hashing\DotVast.Hashing.csproj", "{D118B259-24F0-440A-9D24-2C3D50954BE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotVast.Hashing.Sample", "DotVast.Hashing.Sample\DotVast.Hashing.Sample.csproj", "{0CB22158-B67A-460D-847E-4750D4BC3E4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotVast.Hashing.Sample", "DotVast.Hashing.Sample\DotVast.Hashing.Sample.csproj", "{0CB22158-B67A-460D-847E-4750D4BC3E4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotVast.Hashing.Tests", "DotVast.Hashing.Tests\DotVast.Hashing.Tests.csproj", "{2E3090DA-6F87-41AA-828D-DD2F81BD841D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,18 @@ Global
 		{0CB22158-B67A-460D-847E-4750D4BC3E4A}.Release|arm64.Build.0 = Release|Any CPU
 		{0CB22158-B67A-460D-847E-4750D4BC3E4A}.Release|x64.ActiveCfg = Release|Any CPU
 		{0CB22158-B67A-460D-847E-4750D4BC3E4A}.Release|x64.Build.0 = Release|Any CPU
+		{2E3090DA-6F87-41AA-828D-DD2F81BD841D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E3090DA-6F87-41AA-828D-DD2F81BD841D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E3090DA-6F87-41AA-828D-DD2F81BD841D}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{2E3090DA-6F87-41AA-828D-DD2F81BD841D}.Debug|arm64.Build.0 = Debug|Any CPU
+		{2E3090DA-6F87-41AA-828D-DD2F81BD841D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2E3090DA-6F87-41AA-828D-DD2F81BD841D}.Debug|x64.Build.0 = Debug|Any CPU
+		{2E3090DA-6F87-41AA-828D-DD2F81BD841D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E3090DA-6F87-41AA-828D-DD2F81BD841D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E3090DA-6F87-41AA-828D-DD2F81BD841D}.Release|arm64.ActiveCfg = Release|Any CPU
+		{2E3090DA-6F87-41AA-828D-DD2F81BD841D}.Release|arm64.Build.0 = Release|Any CPU
+		{2E3090DA-6F87-41AA-828D-DD2F81BD841D}.Release|x64.ActiveCfg = Release|Any CPU
+		{2E3090DA-6F87-41AA-828D-DD2F81BD841D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

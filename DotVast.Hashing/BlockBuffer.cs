@@ -23,8 +23,8 @@ internal sealed class BlockBuffer(int size)
         var len = Math.Min(_size - Position, source.Length);
 
         // 创建待处理数据，并更新原始数据
-        var pendingBlock = source.Slice(0, len);
-        source = source.Slice(len);
+        var pendingBlock = source[..len];
+        source = source[len..];
 
         // 此时 Position == 0 且 source.Length >= _size(一个数据块长)，不进行复制，直接返回待处理数据块。
         if (len == _size)
