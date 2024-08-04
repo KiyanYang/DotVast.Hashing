@@ -1,6 +1,6 @@
 ﻿namespace DotVast.Hashing.Tests;
 
-public class SM3Test() : IHasherTestDriver(_emptyInputTestCase)
+public class SM3Tests() : IHasherTestDriver(_emptyInputTestCase)
 {
     private static readonly TestCase _emptyInputTestCase = new("", "1AB21D8355CFA17F8E61194831E81A8F22BEC8C728FEFB747ED035EB5082AA2B");
 

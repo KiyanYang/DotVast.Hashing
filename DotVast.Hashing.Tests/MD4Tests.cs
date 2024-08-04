@@ -1,6 +1,6 @@
 ﻿namespace DotVast.Hashing.Tests;
 
-public class MD4Test() : IHasherTestDriver(_emptyInputTestCase)
+public class MD4Tests() : IHasherTestDriver(_emptyInputTestCase)
 {
     private static readonly TestCase _emptyInputTestCase = new("", "31D6CFE0D16AE931B73C59D7E0C089C0");
 

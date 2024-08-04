@@ -2,18 +2,11 @@
 
 public class QuickXorTests() : IHasherTestDriver(_emptyInputTestCase)
 {
-    public class QuickXorTestCase(string input, string output) : TestCase(input, output)
-    {
-        public override byte[] FromHashString(string hash) => Convert.FromBase64String(hash);
-
-        public override string ToHashString(ReadOnlySpan<byte> bytes) => Convert.ToBase64String(bytes);
-    }
-
-    private static readonly TestCase _emptyInputTestCase = new QuickXorTestCase("", "AAAAAAAAAAAAAAAAAAAAAAAAAAA=");
+    private static readonly TestCase _emptyInputTestCase = new TestCaseBase64("", "AAAAAAAAAAAAAAAAAAAAAAAAAAA=");
 
     protected override IHasher CreateInstance() => new QuickXor();
 
-    public static readonly TheoryData<QuickXorTestCase> TestCases =
+    public static readonly TheoryData<TestCaseBase64> TestCases =
     [
         new("517569636B586F72", "UahDGsawBiy8QQ4ACAAAAAAAAAA="),
         new("517569636B586F7248617368416C676F726974686D", "sKUxUsWt1vy6QQ5IHcMc0BAENpw="),
