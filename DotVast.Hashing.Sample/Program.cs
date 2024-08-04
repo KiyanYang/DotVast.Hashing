@@ -1,25 +1,29 @@
-﻿using DotVast.Hashing.NativeCrypto;
+﻿using DotVast.Hashing;
 
-namespace DotVast.Hashing.Sample;
+var data = new byte[10000];
+Random.Shared.NextBytes(data);
 
-internal static class Extensions
-{
-    internal static void Print(this byte[] data)
-    {
-        Console.WriteLine(Convert.ToHexString(data));
-    }
-}
+// Simple
+var blake3 = Hasher.CreateBLAKE3();
+blake3.Append(data);
+var hash1 = blake3.Finalize();
+var hexHash1 = Convert.ToHexString(hash1);
+Console.WriteLine($"Hash1(Create New)       : {hexHash1}");
 
-internal class Program
-{
-    static void Main(string[] args)
-    {
-        var data = new byte[1000];
-        var random = new Random(9876);
-        random.NextBytes(data);
+// Reuse
+blake3.Reset();
+blake3.Append(data);
+var hash2 = blake3.Finalize();
+var hexHash2 = Convert.ToHexString(hash2);
+Console.WriteLine($"Hash2(Reuse Old)        : {hexHash2}");
 
-        var md4 = new BLAKE3();
-        md4.Append(data);
-        md4.Finalize().Print();
-    }
-}
+// Reuse conveniently
+blake3.Reset();
+blake3.Append(data);
+var hash3 = blake3.FinalizeAndReset(); // == { var hash3 = blake3.Finalize(); blake3.Reset(); }
+blake3.Append(data);
+var hash4 = blake3.Finalize();
+var hexHash3 = Convert.ToHexString(hash3);
+var hexHash4 = Convert.ToHexString(hash4);
+Console.WriteLine($"Hash3(FinalizeAndReset) : {hexHash3}");
+Console.WriteLine($"Hash4(FinalizeAndReset) : {hexHash4}");
