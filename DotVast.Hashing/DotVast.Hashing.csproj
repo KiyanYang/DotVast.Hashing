@@ -6,7 +6,7 @@
 
     <PropertyGroup>
         <PackageId>DotVast.Hashing</PackageId>
-        <Version>0.2.0</Version>
+        <Version>0.2.1</Version>
         <Title>DotVast.Hashing</Title>
         <Authors>DotVast</Authors>
         <Description>DotVast.Hashing</Description>

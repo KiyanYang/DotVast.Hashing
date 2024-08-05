@@ -30,9 +30,9 @@ $HasherInfoList = @(
     @('SHA3_384', 'sha3', 'sha3_384', 48),
     @('SHA3_512', 'sha3', 'sha3_512', 64),
     @('Keccak224', 'sha3', 'keccak224', 28),
-    @('Keccak256', 'sha3', 'Keccak256', 32),
-    @('Keccak384', 'sha3', 'Keccak384', 48),
-    @('Keccak512', 'sha3', 'Keccak512', 64),
+    @('Keccak256', 'sha3', 'keccak256', 32),
+    @('Keccak384', 'sha3', 'keccak384', 48),
+    @('Keccak512', 'sha3', 'keccak512', 64),
     @('SM3', 'sm3', 'sm3', 32)
 )
 
