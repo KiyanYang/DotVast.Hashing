@@ -5,13 +5,17 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <PackageId>DotVast.Hashing</PackageId>
-        <Version>0.2.1</Version>
         <Title>DotVast.Hashing</Title>
         <Authors>DotVast</Authors>
-        <Description>DotVast.Hashing</Description>
+        <Description>Collection of hash functions.</Description>
+
+        <PackageId>DotVast.Hashing</PackageId>
+        <Version>0.2.2</Version>
+
         <Copyright>Copyright © Kiyan Yang, All Rights Reserved.</Copyright>
         <PackageProjectUrl>https://github.com/KiyanYang/DotVast.Hashing</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
     <PropertyGroup>
