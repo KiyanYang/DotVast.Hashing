@@ -1,6 +1,6 @@
 ﻿namespace DotVast.Hashing;
 
-public static partial class Hasher
+public static class Hasher
 {
     public static IHasher CreateBLAKE2b160() => new NativeCrypto.BLAKE2b160();
     public static IHasher CreateBLAKE2b256() => new NativeCrypto.BLAKE2b256();

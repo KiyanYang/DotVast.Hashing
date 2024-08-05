@@ -2,14 +2,12 @@
 
 #if Benchmark || all || sm3
 
-using DotVast.Hashing;
-
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace DotVast.Hashing.NativeCrypto;
 
-public sealed partial class SM3 : IHasher
+internal sealed partial class SM3 : IHasher
 {
     private sealed class SM3Handle : HasherHandle
     {

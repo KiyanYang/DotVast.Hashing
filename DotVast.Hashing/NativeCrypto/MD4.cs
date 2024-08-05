@@ -2,14 +2,12 @@
 
 #if Benchmark || all || md4
 
-using DotVast.Hashing;
-
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace DotVast.Hashing.NativeCrypto;
 
-public sealed partial class MD4 : IHasher
+internal sealed partial class MD4 : IHasher
 {
     private sealed class MD4Handle : HasherHandle
     {

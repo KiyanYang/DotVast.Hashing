@@ -2,14 +2,12 @@
 
 #if Benchmark || all || sha3
 
-using DotVast.Hashing;
-
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace DotVast.Hashing.NativeCrypto;
 
-public sealed partial class Keccak384 : IHasher
+internal sealed partial class Keccak384 : IHasher
 {
     private sealed class Keccak384Handle : HasherHandle
     {

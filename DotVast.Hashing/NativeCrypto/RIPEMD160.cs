@@ -2,14 +2,12 @@
 
 #if Benchmark || all || ripemd
 
-using DotVast.Hashing;
-
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace DotVast.Hashing.NativeCrypto;
 
-public sealed partial class RIPEMD160 : IHasher
+internal sealed partial class RIPEMD160 : IHasher
 {
     private sealed class RIPEMD160Handle : HasherHandle
     {

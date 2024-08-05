@@ -3,7 +3,7 @@
 
 namespace DotVast.Hashing;
 
-public abstract class BlockHash : IHasher
+internal abstract class BlockHash : IHasher
 {
     private protected int _processedBytesCount;
     private protected readonly BlockBuffer _blockBuffer;

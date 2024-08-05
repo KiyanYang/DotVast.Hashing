@@ -2,14 +2,12 @@
 
 #if Benchmark || all || blake2
 
-using DotVast.Hashing;
-
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace DotVast.Hashing.NativeCrypto;
 
-public sealed partial class BLAKE2s160 : IHasher
+internal sealed partial class BLAKE2s160 : IHasher
 {
     private sealed class BLAKE2s160Handle : HasherHandle
     {

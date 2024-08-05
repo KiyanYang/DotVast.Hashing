@@ -1,3 +1,5 @@
+#Requires -Version 7
+
 Push-Location -Path $PSScriptRoot
 
 $DllName = 'native_crypto'
@@ -51,14 +53,12 @@ foreach ($hasherInfo in $hasherInfoList) {
 
 #if Benchmark || all || $feature
 
-using DotVast.Hashing;
-
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace DotVast.Hashing.NativeCrypto;
 
-public sealed partial class $className : IHasher
+internal sealed partial class $className : IHasher
 {
     private sealed class $handleClassName : HasherHandle
     {

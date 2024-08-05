@@ -14,7 +14,7 @@ namespace DotVast.Hashing;
 /// <remarks>
 /// 优化: SM3 杂凑算法的软件快速实现研究 (DOI: 10.11992/tis.201507036)
 /// </remarks>
-public sealed class SM3() : BlockHash(HashSizeInBytes, BlockSizeInBytes)
+internal sealed class SM3() : BlockHash(HashSizeInBytes, BlockSizeInBytes)
 {
     private const int HashSizeInBytes = 32;
     private const int BlockSizeInBytes = 64;

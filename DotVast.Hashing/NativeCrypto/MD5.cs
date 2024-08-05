@@ -2,14 +2,12 @@
 
 #if Benchmark || all || md5
 
-using DotVast.Hashing;
-
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace DotVast.Hashing.NativeCrypto;
 
-public sealed partial class MD5 : IHasher
+internal sealed partial class MD5 : IHasher
 {
     private sealed class MD5Handle : HasherHandle
     {

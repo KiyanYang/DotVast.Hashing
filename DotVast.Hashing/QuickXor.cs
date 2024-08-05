@@ -30,7 +30,7 @@ namespace DotVast.Hashing;
 /// 
 /// <para>See <see href="https://learn.microsoft.com/onedrive/developer/code-snippets/quickxorhash"/>.</para>
 /// </summary>
-public sealed class QuickXor : IHasher
+internal sealed class QuickXor : IHasher
 {
     private const int HashSizeInBytes = 20;
     private const int BlockLength = 20 * 8 * 11;

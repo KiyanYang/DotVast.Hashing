@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace DotVast.Hashing;
 
-public sealed class MD4() : BlockHash(HashSizeInBytes, BlockSizeInBytes)
+internal sealed class MD4() : BlockHash(HashSizeInBytes, BlockSizeInBytes)
 {
     private const int HashSizeInBytes = 16;
     private const int BlockSizeInBytes = 64;
