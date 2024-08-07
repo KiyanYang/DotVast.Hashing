@@ -19,9 +19,9 @@
 
 using System.Buffers.Binary;
 using System.Diagnostics;
-using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics;
 
 namespace DotVast.Hashing;
 
@@ -58,21 +58,56 @@ internal sealed class QuickXor : IHasher
             _lengthSoFar += readLength;
         }
 
+        // https://github.com/dotnet/runtime/blob/v8.0.0/docs/coding-guidelines/vectorization-guidelines.md
         static void Xor(Span<byte> destination, ReadOnlySpan<byte> source)
         {
             Debug.Assert(destination.Length <= source.Length);
 
-            var destinationVector = MemoryMarshal.Cast<byte, Vector<byte>>(destination);
-            var sourceVector = MemoryMarshal.Cast<byte, Vector<byte>>(source);
+            ref byte dest = ref MemoryMarshal.GetReference(destination);
+            ref byte src = ref MemoryMarshal.GetReference(source);
+            ref byte destEnd = ref Unsafe.Add(ref dest, destination.Length);
 
-            for (var i = 0; i != destinationVector.Length; i++)
+            if (Vector512.IsHardwareAccelerated)
             {
-                destinationVector[i] ^= sourceVector[i];
+                ref byte oneVectorAwayFromEnd = ref Unsafe.Subtract(ref destEnd, Vector512<byte>.Count);
+
+                while (!Unsafe.IsAddressGreaterThan(ref dest, ref oneVectorAwayFromEnd))
+                {
+                    Unsafe.As<byte, Vector512<byte>>(ref dest) ^= Vector512.LoadUnsafe(ref src);
+                    dest = ref Unsafe.Add(ref dest, Vector512<byte>.Count);
+                    src = ref Unsafe.Add(ref src, Vector512<byte>.Count);
+                }
             }
 
-            for (var i = destinationVector.Length * Vector<byte>.Count; i != destination.Length; i++)
+            if (Vector256.IsHardwareAccelerated)
             {
-                destination[i] ^= source[i];
+                ref byte oneVectorAwayFromEnd = ref Unsafe.Subtract(ref destEnd, Vector256<byte>.Count);
+
+                while (!Unsafe.IsAddressGreaterThan(ref dest, ref oneVectorAwayFromEnd))
+                {
+                    Unsafe.As<byte, Vector256<byte>>(ref dest) ^= Vector256.LoadUnsafe(ref src);
+                    dest = ref Unsafe.Add(ref dest, Vector256<byte>.Count);
+                    src = ref Unsafe.Add(ref src, Vector256<byte>.Count);
+                }
+            }
+
+            if (Vector128.IsHardwareAccelerated)
+            {
+                ref byte oneVectorAwayFromEnd = ref Unsafe.Subtract(ref destEnd, Vector128<byte>.Count);
+
+                while (!Unsafe.IsAddressGreaterThan(ref dest, ref oneVectorAwayFromEnd))
+                {
+                    Unsafe.As<byte, Vector128<byte>>(ref dest) ^= Vector128.LoadUnsafe(ref src);
+                    dest = ref Unsafe.Add(ref dest, Vector128<byte>.Count);
+                    src = ref Unsafe.Add(ref src, Vector128<byte>.Count);
+                }
+            }
+
+            while (Unsafe.IsAddressLessThan(ref dest, ref destEnd))
+            {
+                dest ^= src;
+                dest = ref Unsafe.Add(ref dest, 1);
+                src = ref Unsafe.Add(ref src, 1);
             }
         }
     }

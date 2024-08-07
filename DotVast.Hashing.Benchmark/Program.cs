@@ -25,6 +25,7 @@ var r2 = b.HashLib4_BLAKE3();
 
 Console.WriteLine(Convert.ToHexString(r1));
 Console.WriteLine(Convert.ToHexString(r2));
+Console.WriteLine(Convert.ToHexString(r1) == Convert.ToHexString(r2));
 #else
 BenchmarkRunner.Run<Benchy>();
 #endif
