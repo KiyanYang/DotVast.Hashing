@@ -10,7 +10,7 @@
         <Description>Collection of hash functions.</Description>
 
         <PackageId>DotVast.Hashing</PackageId>
-        <Version>0.2.2</Version>
+        <Version>0.2.3</Version>
 
         <Copyright>Copyright © Kiyan Yang, All Rights Reserved.</Copyright>
         <PackageProjectUrl>https://github.com/KiyanYang/DotVast.Hashing</PackageProjectUrl>

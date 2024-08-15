@@ -9,7 +9,7 @@
         <NativeLibBuildCommand Condition="'$(Configuration)' != 'Debug'">$(NativeLibBuildCommand) --release</NativeLibBuildCommand>
     </PropertyGroup>
 
-    <Target Name="temp123" BeforeTargets="BeforeBuild">
+    <Target Name="NativeLibBuildMessage" BeforeTargets="BeforeBuild">
         <Message Text="NativeLibBuildCommand = $(NativeLibBuildCommand)" Importance="high" />
         <Message Text="NativeLibEnabledHasher = $(NativeLibEnabledHasher)" Importance="high" />
         <Message Text="NativeLibPack = $(NativeLibPack)" Importance="high" />
